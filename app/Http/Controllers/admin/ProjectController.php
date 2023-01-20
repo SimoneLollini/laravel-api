@@ -9,7 +9,7 @@ use App\Models\Project;
 use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\Paginator;
 
 class ProjectController extends Controller
 {
@@ -20,7 +20,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        // $projects = Project::all();
+        $projects = Project::paginate(3);
         return view('admin.project.index', compact('projects'));
     }
 
