@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTypeRequest;
+use App\Http\Requests\UpdateTypeRequest;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use App\Models\Project;
@@ -17,7 +18,7 @@ class TypeController extends Controller
      */
     public function index()
     {
-        $types = Type::all();
+        $types = Type::paginate(3);
         return view('admin.type.index', compact('types'));
     }
 
@@ -40,7 +41,7 @@ class TypeController extends Controller
     public function store(StoreTypeRequest $request)
     {
         $val_data = $request->validated();
-        $type_slug = Project::generateSlug($val_data['name  ']);
+        $type_slug = Project::generateSlug($val_data['name']);
         $val_data['slug'] = $type_slug;
         $newType = Type::create($val_data);
         return to_route('type.index')->with('message', "$newType->name added!");
@@ -54,7 +55,7 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
+        return view('admin.type.show', compact('type'));
     }
 
     /**
@@ -65,7 +66,7 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        return view('admin.type.edit', compact('type'));
     }
 
     /**
@@ -75,9 +76,14 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Type $type)
+    public function update(UpdateTypeRequest $request, Type $type)
     {
-        //
+        $val_data = $request->validated();
+        $type_slug = Project::generateSlug($val_data['name']);
+        $val_data['slug'] = $type_slug;
+        $type->update($val_data);
+
+        return to_route('type.index')->with('message', "$type->name update!");
     }
 
     /**
@@ -88,6 +94,7 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+        return to_route('type.index')->with('message', "$type->name deleted!");
     }
 }
