@@ -20,10 +20,16 @@
 
     <div class="container mt-5">
 
-        <div class="my-3 ">
+        <div class="my-3">
             <label class="h4" for="title">Title</label>
             <input type="text" name="title" id="title" value="{{ old('title', $project->title) }}"
                 class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="linkTo" class="h4">Link</label>
+            <input type="text" name="linkTo" id="linkTo"
+                class="form-control @error('linkTo') is-invalid @enderror" aria-describedby="linkToHlper"
+                value="{{ old('linkTo') }}">
         </div>
         <div class="mb-3">
             <label class="h4" for="type_id" class="form-label">Types</label>
