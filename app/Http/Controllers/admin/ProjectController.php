@@ -51,6 +51,11 @@ class ProjectController extends Controller
         }
         $project_slug = Project::generateSlug($val_data['title']);
         $val_data['slug'] = $project_slug;
+        if (array_key_exists("status", $val_data) and $val_data['status'] = 1) {
+            $val_data['status'] = true;
+        } else {
+            $val_data['status'] = false;
+        }
         $newProject = Project::create($val_data);
 
 
@@ -105,6 +110,11 @@ class ProjectController extends Controller
         }
         $project_slug = Project::generateSlug($val_data['title']);
         $val_data['slug'] = $project_slug;
+        if (array_key_exists("status", $val_data) and $val_data['status'] = 1) {
+            $val_data['status'] = true;
+        } else {
+            $val_data['status'] = false;
+        }
         $project->update($val_data);
 
         if ($request->has('technologies')) {

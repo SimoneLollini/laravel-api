@@ -25,7 +25,19 @@
                     value="{{ old('title') }}">
                 <small id=" titleHlper" class="text-muted">Add Project title here</small>
             </div>
-
+            <div class="mb-3">
+                <div class="wrapper py-3">
+                    <input type="checkbox" name="status" id="status">
+                    <label for="status">Set carousel visibility (front-end)</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="linkTo" class="form-label">Add the link to this project</label>
+                <input type="text" name="linkTo" id="linkTo"
+                    class="form-control @error('linkTo') is-invalid @enderror" aria-describedby="linkToHlper"
+                    value="{{ old('linkTo') }}">
+                <small id=" linkToHlper" class="text-muted">Add Project link here</small>
+            </div>
 
             <div class="mb-3">
                 <label for="technologies" class="form-label">technologies</label>
