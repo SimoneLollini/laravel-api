@@ -32,6 +32,12 @@
                 value="{{ old('linkTo') }}">
         </div>
         <div class="mb-3">
+            <div class="wrapper py-3">
+                <input type="checkbox" name="status" id="status" {{ $project->status ? 'checked' : '' }}>
+                <label for="status">Set carousel visibility (front-end)</label>
+            </div>
+        </div>
+        <div class="mb-3">
             <label class="h4" for="type_id" class="form-label">Types</label>
             <select class="form-select form-select-md @error('type_id') 'is-invalid' @enderror" name="type_id"
                 id="type_id">

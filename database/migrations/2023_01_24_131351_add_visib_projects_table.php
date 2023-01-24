@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->boolean('status')->default(false)->after('title');
+            $table->boolean('status')->nullable()->after('title');
         });
     }
 
